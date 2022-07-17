@@ -7,7 +7,11 @@ import getProductsById from '@functions/getProductsById';
 const serverlessConfiguration: AWS = {
   service: 'product-service',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  plugins: [
+    'serverless-esbuild',
+    'serverless-plugin-swagger-ui',
+    'serverless-offline',
+  ],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -34,6 +38,11 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+    },
+    swaggerUi: {
+      s3Bucket: 'product-service-dev-serverlessdeploymentbucket-e5ofq3bvgscp',
+      accepts: 'application/json',
+      swaggerUiDirectoryName: '.swagger-ui',
     },
   },
 };

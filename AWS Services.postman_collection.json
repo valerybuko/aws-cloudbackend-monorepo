@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "f99c0ad7-e1a3-456b-897b-c2bd899a3aed",
+		"name": "AWS Services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product Service",
+			"item": [
+				{
+					"name": "getProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cjpda7sw6k.execute-api.eu-west-1.amazonaws.com/dev/products",
+							"protocol": "https",
+							"host": [
+								"cjpda7sw6k",
+								"execute-api",
+								"eu-west-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductsById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

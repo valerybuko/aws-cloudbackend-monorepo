@@ -94,7 +94,7 @@ const getProductsById: ValidatedEventAPIGatewayProxyEvent<
     : 'Product with this productId not found';
 
   return formatJSONResponse({
-    products: `${JSON.stringify(products)}`,
+    products: products,
     errorMessage: '',
     detailedMessage: detailedMessage,
   });

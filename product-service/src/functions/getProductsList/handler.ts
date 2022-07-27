@@ -78,7 +78,7 @@ const getProductsList: ValidatedEventAPIGatewayProxyEvent<
     },
   ];
   return formatJSONResponse({
-    products: `${JSON.stringify(productsList)}`,
+    products: productsList,
   });
 };
 

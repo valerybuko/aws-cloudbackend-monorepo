@@ -2,7 +2,7 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "product-service-dev",
-    "version" : "2022-07-21T11:16:20Z"
+    "version" : "2022-07-26T19:42:18Z"
   },
   "servers" : [ {
     "url" : "https://cjpda7sw6k.execute-api.eu-west-1.amazonaws.com/{basePath}",

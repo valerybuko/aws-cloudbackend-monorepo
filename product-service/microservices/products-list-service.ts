@@ -1,5 +1,5 @@
 import { Client } from 'pg';
-import { getProductsListQuery } from '../queries/index';
+import { getProductsListQuery, getProductsByIdQuery } from '../queries/index';
 
 class ProductsListService {
   constructor(private pgClient: Client) {
@@ -8,7 +8,12 @@ class ProductsListService {
 
   async getProductsList() {
     const result = await this.pgClient.query(getProductsListQuery);
-    return result.rows ?? 'SQL Query Error';
+    return result.rows ?? 'SQL Query Error, getProductsList method';
+  }
+
+  async getProductsById(id: string) {
+    const result = await this.pgClient.query(getProductsByIdQuery, [id]);
+    return result.rows ?? 'SQL Query Error, getProductsById method';
   }
 }
 

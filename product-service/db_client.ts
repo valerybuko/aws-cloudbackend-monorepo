@@ -17,6 +17,5 @@ const dbOptions: ClientConfig = {
 };
 
 const dbClient = new Client(dbOptions);
-dbClient.connect();
 
 export const productService = new ProductsListService(dbClient);

@@ -4,6 +4,7 @@ import 'dotenv/config';
 import hello from '@functions/hello';
 import getProductsList from '@functions/getProductsList';
 import getProductsById from '@functions/getProductsById';
+import createProduct from '@functions/createProduct';
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
@@ -32,7 +33,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, getProductsList, getProductsById },
+  functions: { hello, getProductsList, getProductsById, createProduct },
   package: { individually: true },
   custom: {
     esbuild: {

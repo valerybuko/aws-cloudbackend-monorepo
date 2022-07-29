@@ -1,8 +1,10 @@
 import type { AWS } from '@serverless/typescript';
+import 'dotenv/config';
 
 import hello from '@functions/hello';
 import getProductsList from '@functions/getProductsList';
 import getProductsById from '@functions/getProductsById';
+import createProduct from '@functions/createProduct';
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
@@ -23,17 +25,22 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      DB_HOST: process.env.DB_HOST,
+      DB_PORT: process.env.DB_PORT,
+      DB_NAME: process.env.DB_NAME,
+      DB_USERNAME: process.env.DB_USERNAME,
+      DB_PASSWORD: process.env.DB_PASSWORD,
     },
   },
   // import the function via paths
-  functions: { hello, getProductsList, getProductsById },
+  functions: { hello, getProductsList, getProductsById, createProduct },
   package: { individually: true },
   custom: {
     esbuild: {
       bundle: true,
       minify: false,
       sourcemap: true,
-      exclude: ['aws-sdk'],
+      exclude: ['aws-sdk', 'pg-native'],
       target: 'node14',
       define: { 'require.resolve': undefined },
       platform: 'node',

@@ -2,7 +2,7 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "product-service-dev",
-    "version" : "2022-07-17T16:54:23Z"
+    "version" : "2022-07-28T17:28:06Z"
   },
   "servers" : [ {
     "url" : "https://cjpda7sw6k.execute-api.eu-west-1.amazonaws.com/{basePath}",
@@ -111,6 +111,24 @@
           "type" : "aws_proxy"
         }
       },
+      "post" : {
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/producApiGal2hvhBqWm0YL"
+              }
+            }
+          },
+          "required" : true
+        },
+        "x-amazon-apigateway-integration" : {
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:960411535315:function:product-service-dev-createProduct/invocations",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "aws_proxy"
+        }
+      },
       "options" : {
         "responses" : {
           "200" : {
@@ -140,7 +158,7 @@
             "default" : {
               "statusCode" : "200",
               "responseParameters" : {
-                "method.response.header.Access-Control-Allow-Methods" : "'OPTIONS,GET'",
+                "method.response.header.Access-Control-Allow-Methods" : "'OPTIONS,POST,GET'",
                 "method.response.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
                 "method.response.header.Access-Control-Allow-Origin" : "'*'"
               }
@@ -158,6 +176,21 @@
   },
   "components" : {
     "schemas" : {
+      "producApiGal2hvhBqWm0YL" : {
+        "required" : [ "description", "price", "title" ],
+        "type" : "object",
+        "properties" : {
+          "price" : {
+            "type" : "number"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      },
       "producApiGaEsCjWJBGL3X7" : {
         "required" : [ "name" ],
         "type" : "object",

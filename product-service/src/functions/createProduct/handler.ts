@@ -5,13 +5,14 @@ import { middyfy } from '@libs/lambda';
 import schema from './schema';
 import { productService } from '../../../db_client';
 
-const getProductsList: ValidatedEventAPIGatewayProxyEvent<
+const getProductsById: ValidatedEventAPIGatewayProxyEvent<
   typeof schema
 > = async (event) => {
-  const products = await productService.getProductsList();
+  const product = await productService.createProduct(event.body);
+
   return formatJSONResponse({
-    products,
+    product,
   });
 };
 
-export const main = middyfy(getProductsList);
+export const main = middyfy(getProductsById);

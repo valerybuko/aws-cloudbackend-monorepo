@@ -22,6 +22,6 @@ export const formatJSONResponse = (response: Record<string, unknown>) => {
       'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Methods': '*',
     },
-    body: response,
+    body: JSON.stringify(response),
   };
 };

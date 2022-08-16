@@ -4,9 +4,11 @@ import {
   CopyObjectCommand,
   DeleteObjectCommand,
 } from '@aws-sdk/client-s3';
+import { SQS } from 'aws-sdk';
 
 import { formatJSONResponse } from '@libs/api-gateway';
 import { s3Parser } from '@libs/s3-parser';
+import { sendProductsToQueue } from '@libs/send-products-to-queue';
 
 const importFileParser = async (event) => {
   const record = event.Records[0];
@@ -46,6 +48,10 @@ const importFileParser = async (event) => {
       })
     );
     console.log(`${s3Object.key} file removed from uploaded`);
+
+    sendProductsToQueue(parsedData);
+
+    console.log('import file parser finished');
 
     return formatJSONResponse({
       result: `${s3Object.key} file successfully parsed`,

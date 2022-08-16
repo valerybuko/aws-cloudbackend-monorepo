@@ -18,6 +18,9 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      SQS_URL: {
+        Ref: 'SQSQueue',
+      },
     },
     iam: {
       role: {
@@ -32,7 +35,24 @@ const serverlessConfiguration: AWS = {
             Action: ['s3:*'],
             Resource: ['arn:aws:s3:::import-service-incloud/*'],
           },
+          {
+            Effect: 'Allow',
+            Action: ['sqs:*'],
+            Resource: {
+              'Fn::GetAtt': ['SQSQueue', 'Arn'],
+            },
+          },
         ],
+      },
+    },
+  },
+  resources: {
+    Resources: {
+      SQSQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+          QueueName: 'catalogItemsQueue',
+        },
       },
     },
   },
